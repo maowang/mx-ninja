@@ -1,5 +1,6 @@
 #include "Test.h"
 #include "geometry/CoordinateArraySequence.h"
+#include "geometry/CoordinateFixedSequence.h"
 
 USING_MX_NAMESPACE
 
@@ -80,4 +81,43 @@ TEST(CoordinateArraySequence_add)
 	EXPECT_TRUE(iArray3d.getX(5) == 6);
 	EXPECT_TRUE(iArray3d.getY(5) == 0);
 	EXPECT_TRUE(iArray3d.getZ(5) == 2);
+}
+
+TEST(CoordinateFixedSequence_setget)
+{
+	CoordFixedSequenceFloat<10> farray;
+	for(int i=0;i<10;i++)
+	{
+		farray.setX(i,5.0);
+		EXPECT_TRUE(farray.getX(i) == 5.0);
+	}
+
+	CoordFixedSequenceInt<3,2> iarray;
+	EXPECT_TRUE(iarray.size() == 3);
+	EXPECT_TRUE(iarray.dimension() == 2);
+
+	iarray.setX(0,0);
+	iarray.setY(0,1);
+	iarray.setX(1,2);
+	iarray.setY(1,3);
+	iarray.setX(2,4);
+	iarray.setY(2,5);
+
+	for(int i=0;i<3;i++)
+	{
+		EXPECT_TRUE((iarray.getX(i) == i*2));
+		EXPECT_TRUE((iarray.getY(i) == i*2+1));
+	}
+
+	const int sz = 100000;
+	CoordFixedSequenceInt<sz,2>* seq = new CoordFixedSequenceInt<sz,2>();
+	EXPECT_TRUE(seq->size() == sz);
+	for(int i=0;i<sz;i++)
+	{
+		seq->setX(i,4);
+		EXPECT_TRUE(seq->getX(i) == 4);
+		seq->setY(i,6);
+		EXPECT_TRUE(seq->getY(i) == 6);
+	}
+	SAVE_DELETE(seq);
 }
