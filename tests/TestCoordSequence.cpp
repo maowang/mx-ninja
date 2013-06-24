@@ -1,4 +1,5 @@
 #include "Test.h"
+#include "geometry/Coordinate.h"
 #include "geometry/CoordinateArraySequence.h"
 #include "geometry/CoordinateFixedSequence.h"
 
@@ -120,4 +121,38 @@ TEST(CoordinateFixedSequence_setget)
 		EXPECT_TRUE(seq->getY(i) == 6);
 	}
 	SAVE_DELETE(seq);
+}
+
+TEST(Coordinate_2d3d)
+{
+	Coord2dFloat zero;
+	EXPECT_TRUE(zero.getX() == 0);
+	EXPECT_TRUE(zero.getY() == 0);
+
+	Coord2dFloat coord2d(4,6);
+	EXPECT_TRUE(coord2d.getX() == 4);
+	EXPECT_TRUE(coord2d.getY() == 6);
+
+	coord2d.setX(1);
+	coord2d.setY(3);
+
+	EXPECT_TRUE(coord2d.getX() == 1);
+	EXPECT_TRUE(coord2d.getY() == 3);
+
+	Coord3dFloat zero3d;
+	EXPECT_TRUE(zero3d.getX() == 0);
+	EXPECT_TRUE(zero3d.getY() == 0);
+	EXPECT_TRUE(zero3d.getZ() == 0);
+
+	Coord3dFloat coord3d(4,6,8);
+	EXPECT_TRUE(coord3d.getX() == 4);
+	EXPECT_TRUE(coord3d.getY() == 6);
+	EXPECT_TRUE(coord3d.getZ() == 8);
+
+	coord3d.setX(1);
+	coord3d.setY(3);
+	coord3d.setZ(5);
+	EXPECT_TRUE(coord3d.getX() == 1);
+	EXPECT_TRUE(coord3d.getY() == 3);
+	EXPECT_TRUE(coord3d.getZ() == 5);
 }

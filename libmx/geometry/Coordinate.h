@@ -2,27 +2,107 @@
 #define _COORDINATE_H_
 
 #include "base/Base.h"
+#include "geometry/CoordinateFixedSequence.h"
 
 BEG_MX_NAMESPACE
 
-class LIBMX_API Coordinate
+template<class Type>
+class LIBMX_API Coord2d
 {
 public:
-	 Coordinate();
-	 Coordinate(double x, double y);
-	 Coordinate(double x, double y, double z);
-	 bool equals2D(const Coordinate& other) const;
-	 bool equals3D(const Coordinate& other) const;
-	 double distance2D(const Coordinate& p) const;
-	 double distance3D(const Coordinate& p) const;
-	 bool operator==(const Coordinate& other);
-	 bool operator!=(const Coordinate& other);
+	Coord2d()
+	{
+		coord.setX(0,0);
+		coord.setY(0,0);
+	}
 
+	Coord2d(const Type&x,const Type&y)
+	{
+		coord.setX(0,x);
+		coord.setY(0,y);
+	}
+
+	const Type& getX() const
+	{
+		return coord.getX(0);
+	}
+
+	const Type& getY() const
+	{
+		return coord.getY(0);
+	}
+
+	void setX(const Type& x)
+	{
+		coord.setX(0,x);
+	}
+
+	void setY(const Type& y)
+	{
+		coord.setY(0,y);
+	}
 private:
-	double x;
-	double y;
-	double z;
+	CoordinateFixedSequence<Type,1,2> coord;
 };
+
+typedef Coord2d<int> Coord2dInt;
+typedef Coord2d<float> Coord2dFloat;
+typedef Coord2d<double> Coord2dDouble;
+
+template<class Type>
+class LIBMX_API Coord3d
+{
+public:
+	Coord3d()
+	{
+		coord.setX(0,0);
+		coord.setY(0,0);
+		coord.setZ(0,0);
+	}
+
+	Coord3d(const Type&x,const Type&y,const Type& z)
+	{
+		coord.setX(0,x);
+		coord.setY(0,y);
+		coord.setZ(0,z);
+	}
+
+	const Type& getX() const
+	{
+		return coord.getX(0);
+	}
+
+	const Type& getY() const
+	{
+		return coord.getY(0);
+	}
+
+	const Type& getZ() const
+	{
+		return coord.getZ(0);
+	}
+
+	void setX(const Type& x)
+	{
+		coord.setX(0,x);
+	}
+
+	void setY(const Type& y)
+	{
+		coord.setY(0,y);
+	}
+
+	void setZ(const Type& z)
+	{
+		coord.setZ(0,z);
+	}
+private:
+	CoordinateFixedSequence<Type,1,3> coord;
+};
+
+typedef Coord3d<int> Coord3dInt;
+typedef Coord3d<float> Coord3dFloat;
+typedef Coord3d<double> Coord3dDouble;
 
 END_MX_NAMESAPCE
 

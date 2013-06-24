@@ -4,7 +4,7 @@ BEG_MX_NAMESPACE
 
 ThreadPool::ThreadPool()
 {
-	ThreadPool(1,255);
+	pool = threadpool_create(1,255,0);
 }
 
 ThreadPool::ThreadPool( unsigned int threadsize,unsigned int tasksize )
