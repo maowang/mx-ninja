@@ -5,13 +5,12 @@
 
 BEG_MX_NAMESPACE
 
-template<class Type,unsigned int _size,unsigned int _dim>
+template<class Type,unsigned int _size,unsigned int _dimension>
 class LIBMX_API CoordinateFixedSequence : public CoordinateSequence<Type>
 {
 public:
 	CoordinateFixedSequence()
 	{
-		_dimension = _dim;
 	}
 
 	virtual unsigned int size() const
@@ -36,7 +35,7 @@ public:
 	}
 private:
 	const CoordinateFixedSequence& operator=(const CoordinateFixedSequence& other);
-	Type _values[_size*_dim];
+	Type _values[_size*_dimension];
 };
 
 template<unsigned int sz=1,unsigned int dim=1>

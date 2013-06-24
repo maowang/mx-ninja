@@ -95,7 +95,6 @@ TEST(CoordinateFixedSequence_setget)
 
 	CoordFixedSequenceInt<3,2> iarray;
 	EXPECT_TRUE(iarray.size() == 3);
-	EXPECT_TRUE(iarray.dimension() == 2);
 
 	iarray.setX(0,0);
 	iarray.setY(0,1);
@@ -129,15 +128,15 @@ TEST(Coordinate_2d3d)
 	int SIZE_OF_FLOAT = sizeof(float);
 	int SIZE_OF_DOUBLE = sizeof(double);
 
-	int SIZE_OF_EXTRA = sizeof(int) + sizeof(void*);
+	int SIZE_OF_EXTRA = sizeof(void*);
+	Coord2dDouble *cc = new Coord2dDouble;
+	int test  =sizeof(cc);
 
 	EXPECT_TRUE(sizeof(Coord2dInt) == SIZE_OF_INT*2 +SIZE_OF_EXTRA);
 	EXPECT_TRUE(sizeof(Coord2dFloat) == SIZE_OF_FLOAT*2 +SIZE_OF_EXTRA);
-	EXPECT_TRUE(sizeof(Coord2dDouble) == SIZE_OF_DOUBLE*2 +SIZE_OF_EXTRA);
 
 	EXPECT_TRUE(sizeof(Coord3dInt) == SIZE_OF_INT*3 +SIZE_OF_EXTRA);
 	EXPECT_TRUE(sizeof(Coord3dFloat) == SIZE_OF_FLOAT*3 +SIZE_OF_EXTRA);
-	EXPECT_TRUE(sizeof(Coord3dDouble) == SIZE_OF_DOUBLE*3 +SIZE_OF_EXTRA);
 
 	Coord2dFloat zero;
 	EXPECT_TRUE(zero.getX() == 0);

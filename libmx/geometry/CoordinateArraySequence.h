@@ -11,13 +11,13 @@ class LIBMX_API CoordinateArraySequence : public CoordinateSequence<Type>
 public:
 	CoordinateArraySequence()
 	{
-		
+		_dimension = 1;
 	}
 
-	CoordinateArraySequence(unsigned int dimen,unsigned int seqSize=0)
+	CoordinateArraySequence(unsigned int dimen,unsigned int sz=0)
 	{
 		_dimension  = dimen;
-		_values.resize(seqSize*dimen);
+		_values.resize(sz*dimen);
 	}
 
 	virtual unsigned int size() const
@@ -67,6 +67,7 @@ public:
 		_values.push_back(val3);
 	}
 private:
+	unsigned int _dimension;
 	std::vector<Type> _values;
 };
 
