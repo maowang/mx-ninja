@@ -125,6 +125,20 @@ TEST(CoordinateFixedSequence_setget)
 
 TEST(Coordinate_2d3d)
 {
+	int SIZE_OF_INT = sizeof(int);
+	int SIZE_OF_FLOAT = sizeof(float);
+	int SIZE_OF_DOUBLE = sizeof(double);
+
+	int SIZE_OF_EXTRA = sizeof(int) + sizeof(void*);
+
+	EXPECT_TRUE(sizeof(Coord2dInt) == SIZE_OF_INT*2 +SIZE_OF_EXTRA);
+	EXPECT_TRUE(sizeof(Coord2dFloat) == SIZE_OF_FLOAT*2 +SIZE_OF_EXTRA);
+	EXPECT_TRUE(sizeof(Coord2dDouble) == SIZE_OF_DOUBLE*2 +SIZE_OF_EXTRA);
+
+	EXPECT_TRUE(sizeof(Coord3dInt) == SIZE_OF_INT*3 +SIZE_OF_EXTRA);
+	EXPECT_TRUE(sizeof(Coord3dFloat) == SIZE_OF_FLOAT*3 +SIZE_OF_EXTRA);
+	EXPECT_TRUE(sizeof(Coord3dDouble) == SIZE_OF_DOUBLE*3 +SIZE_OF_EXTRA);
+
 	Coord2dFloat zero;
 	EXPECT_TRUE(zero.getX() == 0);
 	EXPECT_TRUE(zero.getY() == 0);
