@@ -15,12 +15,21 @@ file(GLOB_RECURSE LIBMX_H_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/libs)
 add_definitions(-DCURL_STATICLIB)
 
+if(CYGWIN OR LINUX)
+add_definitions(--coverage)
+endif()
+
 link_directories(${CMAKE_CURRENT_BINARY_DIR}/libs)
 
 add_library(libmx STATIC ${LIBMX_C_SOURCE} ${LIBMX_CXX_SOURCE} ${LIBMX_H_SOURCE})
 
 target_link_libraries(libmx libcurl)
+if(MSVC)
 target_link_libraries(libmx libpthread)
+else()
+target_link_libraries(libmx pthread)
+target_link_libraries(libmx gcov)
+endif()
 
 source_group("base\\Head Files" FILES ${BASE_H_SOURCE})
 source_group("base\\Source Files" FILES ${BASE_CXX_SOURCE})

@@ -12,7 +12,7 @@ BEG_MX_NAMESPACE
 class LIBMX_API Toolkit
 {
 public:
-	static void sleep(int millisec);
+	static void sleep(long long millisec);
 };
 
 END_MX_NAMESAPCE

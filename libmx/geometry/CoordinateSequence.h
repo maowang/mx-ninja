@@ -24,8 +24,6 @@ public:
 
 	virtual const Type& getValue(unsigned int index,unsigned int dim) const = 0;
 
-	virtual void resize(unsigned int sz,const Type& defaultFill ) = 0;
-
 	const Type& getX(unsigned int index) const
 	{
 		return getValue(index,1);

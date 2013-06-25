@@ -82,7 +82,7 @@ std::map<TestFun,std::string> allFuns;
 							\
 	void fun##_test(void)	
 	
-void main()
+int main()
 {
 	printf("===========start do tests============\n");
 	std::map<TestFun,std::string>::iterator it = allFuns.begin();
@@ -102,4 +102,5 @@ void main()
 		printf("-----------%s pass-----------\n",it->second.c_str());
 	}
 	printf("===========end do tests============\n");
+	return 0;
 }

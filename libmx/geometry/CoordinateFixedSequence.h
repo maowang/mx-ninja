@@ -29,10 +29,6 @@ public:
 		assert(index < size() && dim <= _dimension);
 		return _values[index * _dimension + (dim - 1)];
 	}
-
-	virtual void resize(unsigned int sz,const Type& defaultFill ){
-		assert(false);
-	}
 private:
 	const CoordinateFixedSequence& operator=(const CoordinateFixedSequence& other);
 	Type _values[_size*_dimension];

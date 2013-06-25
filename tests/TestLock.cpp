@@ -19,10 +19,10 @@ public:
 protected:
 	bool do_task()
 	{
-		for(int i=0;i<100;i++)
+		for(int i=0;i<10000;i++)
 		{
 			lock.lock();
-			count++;
+			count = count+1;
 			lock.unLock();
 		}
 		return true;
@@ -48,19 +48,17 @@ public:
 protected:
 	bool do_task()
 	{
-		for(int i=0;i<100;i++)
-		{
-			if(useRlock)
-			{
-				rwlock.rLock();
-			}
-			else
-			{
-				rwlock.wLock();
-			}
-			count++;
-			rwlock.unLock();
+		if(useRlock){
+			rwlock.rLock();
+		}else{
+			rwlock.wLock();
 		}
+
+		for(int i=0;i<100000;i++)
+		{
+			count = count+1;
+		}
+		rwlock.unLock();
 		return true;
 	}
 	
@@ -70,7 +68,7 @@ private:
 
 TEST(Lock_MutexLock)
 {
-	ThreadPool pool(100,500);
+	ThreadPool pool(10,200);
 	count = 0;
 	for(int i=0;i<100;i++)
 	{
@@ -78,14 +76,13 @@ TEST(Lock_MutexLock)
 		EXPECT_TRUE(pool.AddTask(task1));
 	}
 
-	Toolkit::sleep(3000);
-
-	EXPECT_TRUE(count == 10000);
+	Toolkit::sleep(5000);
+	EXPECT_TRUE(count == 1000000);
 }
 
 TEST(Lock_ReadWriteLock)
 {
-	ThreadPool pool(100,500);
+	ThreadPool pool(10,200);
 	count = 0;
 	for(int i=0;i<100;i++)
 	{
@@ -94,9 +91,9 @@ TEST(Lock_ReadWriteLock)
 		EXPECT_TRUE(pool.AddTask(task1));
 	}
 
-	Toolkit::sleep(3000);
+	Toolkit::sleep(5000);
 
-	EXPECT_TRUE(count == 10000);
+	EXPECT_TRUE(count == 10000000);
 
 	count = 0;
 
@@ -107,8 +104,8 @@ TEST(Lock_ReadWriteLock)
 		EXPECT_TRUE(pool.AddTask(task1));
 	}
 
-	Toolkit::sleep(3000);
+	Toolkit::sleep(10000);
 
-	EXPECT_TRUE(count != 10000);
+	EXPECT_TRUE(count != 10000000);
 }
 

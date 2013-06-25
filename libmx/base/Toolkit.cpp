@@ -2,10 +2,12 @@
 
 BEG_MX_NAMESPACE
 
-void Toolkit::sleep( int millisec )
+void Toolkit::sleep( long long millisec )
 {
 #ifdef WIN32
 	Sleep(millisec);
+#else
+	usleep(millisec * 1000);
 #endif
 }
 

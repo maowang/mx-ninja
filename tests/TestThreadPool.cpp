@@ -30,7 +30,7 @@ protected:
 	{
 		for(int i=0;i<10;i++)
 		{
-			Toolkit::sleep(500);
+			Toolkit::sleep(100);
 			printf("thread:%s,count:%d\n",tag.c_str(),i);
 		}
 		return true;
@@ -54,7 +54,7 @@ TEST(ThreadPool_SingleThread)
 	EXPECT_TRUE(pool.AddTask(task2));
 	EXPECT_FALSE(pool.AddTask(task3));
 
-	Toolkit::sleep(13000);
+	Toolkit::sleep(2000);
 }
 
 TEST(ThreadPool_MultiThread)
@@ -72,5 +72,17 @@ TEST(ThreadPool_MultiThread)
 	EXPECT_TRUE(pool.AddTask(task2));
 	EXPECT_TRUE(pool.AddTask(task3));
 
-	Toolkit::sleep(8000);
+	Toolkit::sleep(2000);
+}
+
+TEST(ThreadPool_AddTaskFailed)
+{
+	TestCallBack callback;
+	ThreadPool pool;
+	for(int i=0;i<1000;i++)
+	{
+		pool.AddTask(NULL);
+	}
+
+	Toolkit::sleep(500);
 }

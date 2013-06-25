@@ -90,7 +90,7 @@ mark_as_advanced(CURL_HIDDEN_SYMBOLS)
 # MARK_AS_ADVANCED(CURL_WINDOWS_SSPI)
 # ENDIF()
 
-option(HTTP_ONLY "disables all protocols except HTTP (This overrides all CURL_DISABLE_* options)" OFF)
+option(HTTP_ONLY "disables all protocols except HTTP (This overrides all CURL_DISABLE_* options)" ON)
 mark_as_advanced(HTTP_ONLY)
 option(CURL_DISABLE_FTP "disables FTP" OFF)
 mark_as_advanced(CURL_DISABLE_FTP)
