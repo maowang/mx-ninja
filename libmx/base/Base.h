@@ -25,4 +25,8 @@
 							free(x);	\
 							x = NULL;	\
 						}
+
+#define MX_MIN(x,y) ((x) < (y) ? (x) : (y))
+#define MX_MAX(x,y) ((x) > (y) ? (x) : (y))
+
 #endif
