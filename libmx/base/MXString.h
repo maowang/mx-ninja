@@ -18,10 +18,19 @@ public:
 
 	bool create_format(unsigned int size,const char* format, ...);
 
-    const char* data() const;
+	const char* data() const
+	{
+		return _string.c_str();
+	}
 
-    unsigned int length() const;
+	unsigned int length() const
+	{
+		return _string.length();
+	}
 
+	int find(const MXString& str,unsigned offset = 0);
+	void replace(const MXString& src,const MXString& to);
+	void split(std::vector<MXString>& tokens,const MXString& delimiters);
     bool compare(const char * str) const;
 	bool compare_nocase(const char * str) const;
 	bool compare_nocase(const MXString& other) const;

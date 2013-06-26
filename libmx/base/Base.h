@@ -30,4 +30,9 @@
 #define MX_MIN(x,y) ((x) < (y) ? (x) : (y))
 #define MX_MAX(x,y) ((x) > (y) ? (x) : (y))
 
+#define MX_EP (1e-10)
+#define MX_HEP (1e-20)
+#define MX_FLOAT_EQUAL(x,y)  (((x)-(y) >= -MX_EP) && ((x)-(y) <= MX_EP))
+#define MX_DOUBLE_EQUAL(x,y) (((x)-(y) >= -MX_HEP) && ((x)-(y) <= MX_HEP))
+
 #endif

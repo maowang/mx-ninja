@@ -104,15 +104,30 @@ double ByteOrderValues::getDouble(const unsigned char *buf, int byteOrder)
 {
 	long long longValue = getLong(buf, byteOrder);
 	double ret;
-    std::memcpy(&ret, &longValue, sizeof(double));
+    memcpy(&ret, &longValue, sizeof(double));
 	return ret;
 }
 
 void ByteOrderValues::putDouble(double doubleValue, unsigned char *buf, int byteOrder)
 {
 	long long longValue;
-    std::memcpy(&longValue, &doubleValue, sizeof(double));
+    memcpy(&longValue, &doubleValue, sizeof(double));
 	putLong(longValue, buf, byteOrder);
+}
+
+float ByteOrderValues::getFloat(const unsigned char *buf, int byteOrder)
+{
+	int floatValue = getInt(buf, byteOrder);
+	float ret;
+	memcpy(&ret, &floatValue, sizeof(float));
+	return ret;
+}
+
+void ByteOrderValues::putFloat(float floatValue, unsigned char *buf, int byteOrder)
+{
+	int intValue;
+	memcpy(&intValue, &floatValue, sizeof(float));
+	putInt(intValue, buf, byteOrder);
 }
 
 END_MX_NAMESAPCE

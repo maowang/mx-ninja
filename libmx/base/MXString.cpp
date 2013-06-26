@@ -78,16 +78,6 @@ bool MXString::create_format(unsigned int size,const char* format, ...)
 	return bRet;
 }
 
-const char* MXString::data() const
-{
-    return _string.c_str();
-}
-
-unsigned int MXString::length() const
-{
-    return _string.length();
-}
-
 bool MXString::compare(const char * str) const
 {
     return strcmp(data(), str) == 0;
@@ -124,5 +114,45 @@ bool MXString::operator!= (const MXString& other)
 	return !(*this == other);
 }
 
-END_MX_NAMESAPCE
+void MXString::split( std::vector<MXString>& tokens,const MXString& delimiters )
+{
+	std::string::size_type lastPos = 0;
+	std::string::size_type pos = _string.find_first_of(delimiters.data(), lastPos);
 
+	while (std::string::npos != pos || std::string::npos != lastPos)
+	{
+		tokens.push_back(_string.substr(lastPos, pos - lastPos));
+
+		lastPos = _string.find_first_not_of(delimiters.data(), pos);
+
+		pos = _string.find_first_of(delimiters.data(), lastPos);
+	}
+}
+
+int MXString::find( const MXString& str,unsigned offset /*= 0*/ )
+{
+	std::string::size_type pos = _string.find_first_of(str.data(), 0);
+	if(pos == std::string::npos)
+	{
+			return -1;
+	}
+	
+	return pos;
+}
+
+void MXString::replace( const MXString& src,const MXString& to )
+{
+	int lastPos = 0;
+	int pos = find(src,lastPos);
+
+	while (-1 != pos || pos != lastPos)
+	{
+		_string.replace(pos,src.length(),to.data());
+
+		lastPos = pos + to.length();
+
+		pos = find(src,lastPos);
+	}
+}
+
+END_MX_NAMESAPCE
