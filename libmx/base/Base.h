@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <algorithm>
 
 #define LIBMX_API
 

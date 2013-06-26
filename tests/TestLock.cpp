@@ -3,6 +3,7 @@
 #include "base/ReadWriteLock.h"
 #include "base/ThreadPool.h"
 #include "base/Toolkit.h"
+#include "base/Rand.h"
 
 USING_MX_NAMESPACE
 
@@ -109,3 +110,52 @@ TEST(Lock_ReadWriteLock)
 	EXPECT_TRUE(count != 10000000);
 }
 
+typedef struct  
+{
+	int a;
+	int b;
+}StructValue;
+ 
+StructValue* testVal = NULL;
+
+class RandTask : public Task
+{
+public:
+	bool do_task()
+	{
+		for(int i=0;i<10000;i++)
+		{
+			if(Rand::randUInt() % 3 == 0)
+			{
+				SAVE_DELETE(testVal);
+			}
+			else if(Rand::randUInt() % 3 == 1)
+			{
+				SAVE_DELETE(testVal);
+				testVal = new StructValue;
+				testVal->a = 1;
+				testVal->b = 1;
+			}
+			else
+			{
+				if(testVal != NULL)
+				{
+					testVal->a = testVal->a + testVal->b;
+				}
+			}
+		}
+
+		return true;
+	}
+};
+
+TEST(MutexLock_delete)
+{
+// 	ThreadPool pool(30,200);
+// 	for(int i=0;i<150;i++)
+// 	{
+// 		pool.AddTask(new RandTask());
+// 	}
+// 
+// 	Toolkit::sleep(1000);
+}
