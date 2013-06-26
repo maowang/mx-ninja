@@ -23,19 +23,21 @@ TEST(ByteOrderValues_int)
 
 TEST(ByteOrderValues_long)
 {
+	long long longbig = 0x0102030405060708ll;
+	long long longlittle = 0x0807060504030201ll;
 	unsigned char buffer[8] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08};
 	long long value = 0;
 	value = ByteOrderValues::getLong(buffer,ByteOrderValues::ENDIAN_BIG);
-	EXPECT_TRUE(value == 0x0102030405060708);
+	EXPECT_TRUE(value == longbig);
 	value = ByteOrderValues::getLong(buffer,ByteOrderValues::ENDIAN_LITTLE);
-	EXPECT_TRUE(value == 0x0807060504030201);
+	EXPECT_TRUE(value == longlittle);
 
 	unsigned char bufbig[8] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08};
-	ByteOrderValues::putLong(0x0102030405060708,buffer,ByteOrderValues::ENDIAN_BIG);
+	ByteOrderValues::putLong(longbig,buffer,ByteOrderValues::ENDIAN_BIG);
 	EXPECT_TRUE(memcmp(buffer,bufbig,8) == 0);
 
 	unsigned char buflittle[8] = {0x08,0x07,0x06,0x05,0x04,0x03,0x02,0x01};
-	ByteOrderValues::putLong(0x0102030405060708,buffer,ByteOrderValues::ENDIAN_LITTLE);
+	ByteOrderValues::putLong(longlittle,buffer,ByteOrderValues::ENDIAN_LITTLE);
 	EXPECT_TRUE(memcmp(buffer,buflittle,8) == 0);
 }
 

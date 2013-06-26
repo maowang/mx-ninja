@@ -15,6 +15,7 @@ public:
 		return _bigendian;
 	}
 
+	unsigned int random() const;
 private:
 	System();
 	System(const System& other);
