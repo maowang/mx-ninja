@@ -129,29 +129,14 @@ void MXString::split( std::vector<MXString>& tokens,const MXString& delimiters )
 	}
 }
 
-int MXString::find( const MXString& str,unsigned offset /*= 0*/ )
-{
-	std::string::size_type pos = _string.find_first_of(str.data(), 0);
-	if(pos == std::string::npos)
-	{
-			return -1;
-	}
-	
-	return pos;
-}
-
 void MXString::replace( const MXString& src,const MXString& to )
 {
-	int lastPos = 0;
-	int pos = find(src,lastPos);
-
-	while (-1 != pos || pos != lastPos)
+	int old_str_len = src.length(), new_str_len = to.length();
+	int pos = 0;
+	while( (pos = _string.find( src.data(), pos ) ) !=  std::string::npos )
 	{
-		_string.replace(pos,src.length(),to.data());
-
-		lastPos = pos + to.length();
-
-		pos = find(src,lastPos);
+		_string.replace( pos, old_str_len, to.data() );
+		pos += new_str_len;
 	}
 }
 

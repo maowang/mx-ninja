@@ -28,7 +28,24 @@ public:
 		return _string.length();
 	}
 
-	int find(const MXString& str,unsigned offset = 0);
+	void lower()
+	{
+		std::transform(
+			_string.begin(),
+			_string.end(),
+			_string.begin(),
+			tolower);
+	}
+
+	void upper() 
+	{
+		std::transform(
+			_string.begin(),
+			_string.end(),
+			_string.begin(),
+			toupper);
+	}
+
 	void replace(const MXString& src,const MXString& to);
 	void split(std::vector<MXString>& tokens,const MXString& delimiters);
     bool compare(const char * str) const;
