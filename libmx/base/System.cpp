@@ -1,6 +1,5 @@
 #include "base/System.h"
 #include "base/Toolkit.h"
-#include "base/Rand.h"
 
 BEG_MX_NAMESPACE
 
@@ -30,11 +29,6 @@ void System::init()
 const System& System::getInstance()
 {
 	return system_ins;
-}
-
-unsigned int System::random() const
-{
-	return g_RandGen.RandUInt();
 }
 
 END_MX_NAMESAPCE

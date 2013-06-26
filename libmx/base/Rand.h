@@ -1,70 +1,44 @@
-#ifndef _RAND_H__
-#define _RAND_H__
+#ifndef _RAND_H_
+#define _RAND_H_
 
 #include "base/Base.h"
-#include "base/MutexLock.h"
 
 BEG_MX_NAMESPACE
 
-class RandGen
+class LIBMX_API Rand
 {
 public:
-	typedef unsigned long SeedType;
+	//Returns an unsigned integer from 0..RandomMax
+	//0~RandMax unsigned int 随机数
+	static unsigned int randUInt(void);
+
+	//Returns a double in [0.0, 1.0]
+	//返回0.0~1.0之间的双精度浮点
+	static double randDouble(void)
+	{
+		return static_cast<double>(randUInt())
+			/ (static_cast<double>(RandomMax) );
+	}
+
+	// 返回[start,end]之间的整数
+	static unsigned int randRange(unsigned int start, unsigned int end);
 private:
+	typedef unsigned long SeedType;
 	SeedType m_Seed[3];
 	static const SeedType Max32BitLong = 0xFFFFFFFFLU;
-public:
 	static const SeedType RandomMax = Max32BitLong;
 
-	RandGen(const SeedType p_Seed = 0)
+	Rand(const SeedType p_Seed = 0)
 	{
 		Reset(p_Seed);
 	}
-	//ReSeed the random number generator
-	//种子处理
-	void Reset(const SeedType p_Seed = 0)
-	{		
-		m_Seed[0] = (p_Seed ^ 0xFEA09B9DLU) & 0xFFFFFFFELU;
-		m_Seed[0] ^= (((m_Seed[0] << 7) & Max32BitLong) ^ m_Seed[0]) >> 31;
 
-		m_Seed[1] = (p_Seed ^ 0x9C129511LU) & 0xFFFFFFF8LU;
-		m_Seed[1] ^= (((m_Seed[1] << 2) & Max32BitLong) ^ m_Seed[1]) >> 29;
+	void Reset(const SeedType p_Seed = 0);
 
-		m_Seed[2] = (p_Seed ^ 0x2512CFB8LU) & 0xFFFFFFF0LU;
-		m_Seed[2] ^= (((m_Seed[2] << 9) & Max32BitLong) ^ m_Seed[2]) >> 28;
+	unsigned int genUInt(void);
 
-		RandUInt();
-	}
-
-	//Returns an unsigned integer from 0..RandomMax
-	//0~RandMax unsigned int 随机数
-	unsigned long RandUInt(void)
-	{
-		m_Seed[0] = (((m_Seed[0] & 0xFFFFFFFELU) << 24) & Max32BitLong)
-			^ ((m_Seed[0] ^ ((m_Seed[0] << 7) & Max32BitLong)) >> 7);
-
-		m_Seed[1] = (((m_Seed[1] & 0xFFFFFFF8LU) << 7) & Max32BitLong)
-			^ ((m_Seed[1] ^ ((m_Seed[1] << 2) & Max32BitLong)) >> 22);
-
-		m_Seed[2] = (((m_Seed[2] & 0xFFFFFFF0LU) << 11) & Max32BitLong)
-			^ ((m_Seed[2] ^ ((m_Seed[2] << 9) & Max32BitLong)) >> 17);
-
-		return (m_Seed[0] ^ m_Seed[1] ^ m_Seed[2]);
-	}
-	//Returns a double in [0.0, 1.0]
-	//返回0.0~1.0之间的双精度浮点
-	double RandDouble(void)
-	{
-		return static_cast<double>(RandUInt())
-			/ (static_cast<double>(RandomMax) );
-	}
-	
-	static unsigned int	GetRand(unsigned int nStart, unsigned int nEnd);
-		
+	static Rand g_genRand;
 };
-
-extern	RandGen	g_RandGen;
-
 
 END_MX_NAMESAPCE
 

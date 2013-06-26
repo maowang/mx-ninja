@@ -14,13 +14,16 @@ void Toolkit::sleep( long long millisec )
 long long Toolkit::currentTime()
 {
 #ifdef WIN32
-	LARGE_INTEGER  large_interger; 
-	QueryPerformanceCounter(&large_interger);  
-	return large_interger.QuadPart;  
+	LARGE_INTEGER tick;
+	LARGE_INTEGER timestamp;
+	long long time;
+	QueryPerformanceFrequency(&tick);
+	QueryPerformanceCounter(&timestamp);
+	return (timestamp.QuadPart % tick.QuadPart)*1E6/tick.QuadPart; 
 #else
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
-	return tv.tv_sec*1000*1000+tv.tv_usec;
+	return (long long)tv.tv_sec*1000*1000+tv.tv_usec;
 #endif
 }
 
