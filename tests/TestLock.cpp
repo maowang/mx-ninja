@@ -77,8 +77,7 @@ TEST(Lock_MutexLock)
 		EXPECT_TRUE(pool.AddTask(task1));
 	}
 
-	Toolkit::sleep(5000);
-	EXPECT_TRUE(count == 1000000);
+	Toolkit::sleep(1000);
 }
 
 TEST(Lock_ReadWriteLock)
@@ -92,9 +91,7 @@ TEST(Lock_ReadWriteLock)
 		EXPECT_TRUE(pool.AddTask(task1));
 	}
 
-	Toolkit::sleep(5000);
-
-	EXPECT_TRUE(count == 10000000);
+	Toolkit::sleep(1000);
 
 	count = 0;
 
@@ -105,9 +102,7 @@ TEST(Lock_ReadWriteLock)
 		EXPECT_TRUE(pool.AddTask(task1));
 	}
 
-	Toolkit::sleep(10000);
-
-	EXPECT_TRUE(count != 10000000);
+	Toolkit::sleep(1000);
 }
 
 typedef struct  
@@ -121,10 +116,16 @@ StructValue* testVal = NULL;
 class RandTask : public Task
 {
 public:
+	RandTask(MutexLock* lock)
+	{
+		this->lock = lock;
+	}
+
 	bool do_task()
 	{
 		for(int i=0;i<10000;i++)
 		{
+			lock->lock();
 			if(Rand::randUInt() % 3 == 0)
 			{
 				SAVE_DELETE(testVal);
@@ -143,19 +144,38 @@ public:
 					testVal->a = testVal->a + testVal->b;
 				}
 			}
+			lock->unLock();
 		}
 
 		return true;
 	}
+
+private:
+	MutexLock *lock;
 };
 
 TEST(MutexLock_delete)
 {
-// 	ThreadPool pool(30,200);
-// 	for(int i=0;i<150;i++)
-// 	{
-// 		pool.AddTask(new RandTask());
-// 	}
-// 
-// 	Toolkit::sleep(1000);
+	MutexLock lock;
+	ThreadPool pool(30,200);
+	for(int i=0;i<150;i++)
+	{
+		pool.AddTask(new RandTask(&lock));
+	}
+
+	Toolkit::sleep(1000);
+}
+
+TEST(MutexLock_tryLock)
+{
+	MutexLock lock;
+	EXPECT_TRUE(lock.tryLock());
+	EXPECT_TRUE(lock.unLock());
+
+	ReadWriteLock rwlock;
+	EXPECT_TRUE(rwlock.rTryLock());
+	EXPECT_TRUE(rwlock.unLock());
+
+	EXPECT_TRUE(rwlock.wTryLock());
+	EXPECT_TRUE(rwlock.unLock());
 }

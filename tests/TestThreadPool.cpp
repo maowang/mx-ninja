@@ -54,7 +54,7 @@ TEST(ThreadPool_SingleThread)
 	EXPECT_TRUE(pool.AddTask(task2));
 	EXPECT_FALSE(pool.AddTask(task3));
 
-	Toolkit::sleep(2000);
+	Toolkit::sleep(1000);
 }
 
 TEST(ThreadPool_MultiThread)
@@ -72,7 +72,7 @@ TEST(ThreadPool_MultiThread)
 	EXPECT_TRUE(pool.AddTask(task2));
 	EXPECT_TRUE(pool.AddTask(task3));
 
-	Toolkit::sleep(2000);
+	Toolkit::sleep(1000);
 }
 
 TEST(ThreadPool_AddTaskFailed)
@@ -84,5 +84,5 @@ TEST(ThreadPool_AddTaskFailed)
 		pool.AddTask(NULL);
 	}
 
-	Toolkit::sleep(500);
+	Toolkit::sleep(1000);
 }

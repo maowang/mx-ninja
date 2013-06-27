@@ -37,7 +37,7 @@ TEST(ByteOrderValues_long)
 	EXPECT_TRUE(memcmp(buffer,bufbig,8) == 0);
 
 	unsigned char buflittle[8] = {0x08,0x07,0x06,0x05,0x04,0x03,0x02,0x01};
-	ByteOrderValues::putLong(longlittle,buffer,ByteOrderValues::ENDIAN_LITTLE);
+	ByteOrderValues::putLong(longbig,buffer,ByteOrderValues::ENDIAN_LITTLE);
 	EXPECT_TRUE(memcmp(buffer,buflittle,8) == 0);
 }
 

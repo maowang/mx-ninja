@@ -116,13 +116,18 @@ bool MXString::operator!= (const MXString& other)
 
 void MXString::split( std::vector<MXString>& tokens,const MXString& delimiters )
 {
+	tokens.clear();
+
 	std::string::size_type lastPos = 0;
 	std::string::size_type pos = _string.find_first_of(delimiters.data(), lastPos);
 
 	while (std::string::npos != pos || std::string::npos != lastPos)
 	{
-		tokens.push_back(_string.substr(lastPos, pos - lastPos));
-
+		if(pos != lastPos)
+		{
+			tokens.push_back(_string.substr(lastPos, pos - lastPos));
+		}
+		
 		lastPos = _string.find_first_not_of(delimiters.data(), pos);
 
 		pos = _string.find_first_of(delimiters.data(), lastPos);

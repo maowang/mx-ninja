@@ -14,6 +14,7 @@ public:
 	bool tryLock();
 
 private:
+	bool valid;
 	pthread_mutex_t mutex;
 };
 

@@ -16,6 +16,7 @@ public:
 	bool wTryLock();
 
 private:
+	bool valid;
 	pthread_rwlock_t rwlock;
 };
 

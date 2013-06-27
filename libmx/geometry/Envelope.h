@@ -111,7 +111,7 @@ public:
 
 		if(isNull())
 		{
-			init(other.minX(),other.maxX(),other.minY(),other.maxY());
+			init(other.minX(),other.minY(),other.maxX(),other.maxY());
 		}
 		else
 		{

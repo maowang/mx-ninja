@@ -50,6 +50,22 @@ TEST(Envelope_width_height_center)
 
 TEST(Envelope_expand)
 {
+	EnvelopeInt nulEnv;
+	EXPECT_TRUE(nulEnv.isNull());
+	nulEnv.expandToInclude(3,5);
+	EXPECT_TRUE(nulEnv.minX() == 3);
+	EXPECT_TRUE(nulEnv.minY() == 5);
+	EXPECT_TRUE(nulEnv.maxX() == 3);
+	EXPECT_TRUE(nulEnv.maxY() == 5);
+
+	nulEnv.setToNull();
+	EXPECT_TRUE(nulEnv.isNull());
+	nulEnv.expandToInclude(EnvelopeInt(1,2,3,4));
+	EXPECT_TRUE(nulEnv.minX() == 1);
+	EXPECT_TRUE(nulEnv.minY() == 2);
+	EXPECT_TRUE(nulEnv.maxX() == 3);
+	EXPECT_TRUE(nulEnv.maxY() == 4);
+
 	EnvelopeFloat env(0,1,6,9);
 	env.expandToInclude(-3,0);
 	EXPECT_TRUE(env.minX() == -3);
