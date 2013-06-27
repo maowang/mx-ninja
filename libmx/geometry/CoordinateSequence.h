@@ -55,6 +55,6 @@ public:
 	}
 };
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE
 
 #endif

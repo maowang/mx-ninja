@@ -145,4 +145,4 @@ void MXString::replace( const MXString& src,const MXString& to )
 	}
 }
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE

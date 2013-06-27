@@ -27,6 +27,6 @@ public:
 	static void putDouble(double doubleValue, unsigned char *buf, int byteOrder);
 };
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE
 
 #endif

@@ -74,4 +74,4 @@ int CHttpClient::Get(const std::string & strUrl, std::string & strResponse)
 	return res;
 }
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE

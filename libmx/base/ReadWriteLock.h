@@ -20,6 +20,6 @@ private:
 	pthread_rwlock_t rwlock;
 };
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE
 
 #endif

@@ -167,6 +167,6 @@ typedef Envelope<int> EnvelopeInt;
 typedef Envelope<float> EnvelopeFloat;
 typedef Envelope<double> EnvelopeDouble;
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE
 
 #endif

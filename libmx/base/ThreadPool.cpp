@@ -34,4 +34,4 @@ bool ThreadPool::AddTask( Task* task )
 	return true;
 }
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE

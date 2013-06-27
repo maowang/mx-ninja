@@ -35,4 +35,4 @@ void Task::Run()
 	if(callback != NULL)callback->do_task_after(this);
 }
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE

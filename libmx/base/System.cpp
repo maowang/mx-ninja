@@ -31,4 +31,4 @@ const System& System::getInstance()
 	return system_ins;
 }
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE

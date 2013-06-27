@@ -20,6 +20,6 @@ private:
 	pthread_cond_t cond;
 };
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE
 
 #endif

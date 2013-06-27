@@ -34,4 +34,4 @@ bool Condition::lock()
 	return pthread_mutex_lock(&mutex) == 0;
 }
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE

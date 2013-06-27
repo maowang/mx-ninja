@@ -18,6 +18,6 @@ private:
 	pthread_mutex_t mutex;
 };
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE
 
 #endif

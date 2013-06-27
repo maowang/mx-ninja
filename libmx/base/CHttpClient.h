@@ -30,6 +30,6 @@ public:
 	int Get(const std::string & strUrl, std::string & strResponse);
 };
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE
 
 #endif

@@ -30,4 +30,4 @@ bool MutexLock::tryLock()
 	return pthread_mutex_trylock(&mutex) == 0;
 }
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE

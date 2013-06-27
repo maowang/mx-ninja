@@ -1,7 +1,8 @@
 #ifndef _SYSTEM_H
 #define _SYSTEM_H
 
-#include "Base.h"
+#include "base/Base.h"
+#include "base/Log.h"
 
 BEG_MX_NAMESPACE
 
@@ -26,5 +27,5 @@ private:
 	bool _bigendian;
 };
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE
 #endif

@@ -10,7 +10,6 @@ void debug_set_level(int lvl) {
 	rvr_debug = lvl > DEBUG_LEVEL_INFO ? DEBUG_LEVEL_INFO : lvl;
 }
 
-
 void debug(int level, const char *function, const char *format, ...){
 	const char *_level;
 	char line[512];
@@ -23,7 +22,7 @@ void debug(int level, const char *function, const char *format, ...){
 
 	// append time
 	time(&now);
-	strftime(line, sizeof(line), "(%d:%m:%Y -- %T)", localtime(&now));
+	strftime(line, sizeof(line), "(%Y/%m/%d %X)", localtime(&now));
 
 	// append process data and level
 
@@ -36,26 +35,11 @@ void debug(int level, const char *function, const char *format, ...){
 	}
 
 
-	sprintf(line+strlen(line), "[%u,%s] %s: ", getpid(), function, _level);
+	sprintf(line+strlen(line), "[%s] %s: ", function, _level);
 
 	va_start(arg, format);
 	vsprintf(line+strlen(line), format, arg);
 	va_end(arg);
 
-	printf(line);
-}
-
-void debug_append(int level, const char *format, ...) {
-
-	va_list arg;
-	char line[512] = {0};
-
-	if (rvr_debug < level)
-		return;
-
-	va_start(arg, format);
-	vsprintf(line+strlen(line), format, arg);
-	va_end(arg);
-
-	printf(line);
+	fprintf(stdout,"%s\n",line);
 }

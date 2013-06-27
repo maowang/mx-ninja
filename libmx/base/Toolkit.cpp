@@ -16,10 +16,9 @@ long long Toolkit::currentTime()
 #ifdef WIN32
 	LARGE_INTEGER tick;
 	LARGE_INTEGER timestamp;
-	long long time;
 	QueryPerformanceFrequency(&tick);
 	QueryPerformanceCounter(&timestamp);
-	return (timestamp.QuadPart % tick.QuadPart)*1E6/tick.QuadPart; 
+	return (timestamp.QuadPart % tick.QuadPart)*1000000/tick.QuadPart; 
 #else
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
@@ -37,4 +36,4 @@ unsigned int Toolkit::threadId()
 	
 }
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE

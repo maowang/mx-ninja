@@ -130,4 +130,4 @@ void ByteOrderValues::putFloat(float floatValue, unsigned char *buf, int byteOrd
 	putInt(intValue, buf, byteOrder);
 }
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE

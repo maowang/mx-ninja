@@ -17,7 +17,7 @@
 
 #define USING_MX_NAMESPACE  using namespace mx;
 #define BEG_MX_NAMESPACE namespace mx{
-#define END_MX_NAMESAPCE }
+#define END_MX_NAMESPACE }
 
 #define SAVE_DELETE(x)  {				\
 							delete x;	\

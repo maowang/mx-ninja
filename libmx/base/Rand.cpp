@@ -43,4 +43,4 @@ unsigned int Rand::randUInt( void )
 	return g_genRand.genUInt();
 }
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE

@@ -3,6 +3,7 @@
 #include "base/Rand.h"
 #include "base/Toolkit.h"
 #include "base/ThreadPool.h"
+#include "base/QSort.h"
 
 USING_MX_NAMESPACE
 
@@ -49,4 +50,36 @@ TEST(System_rand)
 	{
 		printf("%d\n",Rand::randRange(3,6));
 	}
+}
+
+TEST(QSort_sort)
+{
+	std::vector<int> array;
+	array.push_back(10);
+	array.push_back(3);
+	array.push_back(4);
+	array.push_back(1);
+	array.push_back(4);
+
+	QSort<int>::sort(array,true);
+	EXPECT_TRUE(array[0]==1);
+	EXPECT_TRUE(array[1]==3);
+	EXPECT_TRUE(array[2]==4);
+	EXPECT_TRUE(array[3]==4);
+	EXPECT_TRUE(array[4]==10);
+
+	QSort<int>::sort(array,false);
+	EXPECT_TRUE(array[0]==10);
+	EXPECT_TRUE(array[1]==4);
+	EXPECT_TRUE(array[2]==4);
+	EXPECT_TRUE(array[3]==3);
+	EXPECT_TRUE(array[4]==1);
+}
+
+TEST(Log_log)
+{
+	MX_INFO("test info message!");
+	MX_NOTIFY("test notify message!");
+	MX_WARNING("test warning message!");
+	MX_ERROR("test error message!");
 }

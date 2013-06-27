@@ -104,6 +104,6 @@ typedef Coord3d<int> Coord3dInt;
 typedef Coord3d<float> Coord3dFloat;
 typedef Coord3d<double> Coord3dDouble;
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE
 
 #endif

@@ -1,6 +1,7 @@
 #include "Test.h"
 #include "base/Toolkit.h"
 #include "base/ThreadPool.h"
+#include "base/Log.h"
 
 USING_MX_NAMESPACE
 
@@ -9,12 +10,12 @@ class TestCallBack : public TaskCallBack
 public:
 	void do_task_before(Task* task)
 	{
-		printf("before task run...,task info:%d\n",task);
+		MX_INFO("before task run...,task info:%d\n",task);
 	}
 
 	void do_task_after(Task* task)
 	{
-		printf("after task run...,task info:%d\n",task);
+		MX_INFO("after task run...,task info:%d\n",task);
 	}
 };
 
@@ -31,7 +32,7 @@ protected:
 		for(int i=0;i<10;i++)
 		{
 			Toolkit::sleep(100);
-			printf("thread:%s,count:%d\n",tag.c_str(),i);
+			MX_INFO("thread:%s,count:%d\n",tag.c_str(),i);
 		}
 		return true;
 	}

@@ -40,6 +40,6 @@ private:
 	static Rand g_genRand;
 };
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE
 
 #endif

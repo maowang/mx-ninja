@@ -42,4 +42,4 @@ bool ReadWriteLock::wTryLock()
 	return pthread_rwlock_trywrlock(&rwlock) == 0;
 }
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE

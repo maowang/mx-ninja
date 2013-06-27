@@ -18,6 +18,6 @@ private:
 	threadpool_t* pool;
 };
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE
 
 #endif

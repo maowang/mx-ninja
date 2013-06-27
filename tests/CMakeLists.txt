@@ -12,3 +12,5 @@ libmx_add_test(TestEnvelope)
 libmx_add_test(TestByteOrder)
 libmx_add_test(TestMXString)
 libmx_add_test(TestSystem)
+libmx_add_test(TestMXMath)
+

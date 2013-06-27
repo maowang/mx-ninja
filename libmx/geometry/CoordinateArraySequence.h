@@ -75,6 +75,6 @@ typedef CoordinateArraySequence<int> CoordArraySequenceInt;
 typedef CoordinateArraySequence<float> CoordArraySequenceFloat;
 typedef CoordinateArraySequence<double> CoordArraySequenceDouble;
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE
 
 #endif

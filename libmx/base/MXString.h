@@ -61,6 +61,6 @@ private:
     std::string _string;
 };
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE
 
 #endif

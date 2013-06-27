@@ -43,6 +43,6 @@ class CoordFixedSequenceFloat : public CoordinateFixedSequence<float,sz,dim>{};
 template<unsigned int sz=1,unsigned int dim=1>
 class CoordFixedSequenceDouble : public CoordinateFixedSequence<double,sz,dim>{};
 
-END_MX_NAMESAPCE
+END_MX_NAMESPACE
 
 #endif
