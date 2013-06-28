@@ -2,7 +2,7 @@
 #define _COORDINATE_H_
 
 #include "base/Base.h"
-#include "geometry/CoordinateFixedSequence.h"
+#include "base/FixedSequence.h"
 
 BEG_MX_NAMESPACE
 
@@ -42,7 +42,7 @@ public:
 		coord.setY(0,y);
 	}
 private:
-	CoordinateFixedSequence<Type,1,2> coord;
+	FixedSequence<Type,1,2> coord;
 };
 
 typedef Coord2d<int> Coord2dInt;
@@ -97,7 +97,7 @@ public:
 		coord.setZ(0,z);
 	}
 private:
-	CoordinateFixedSequence<Type,1,3> coord;
+	FixedSequence<Type,1,3> coord;
 };
 
 typedef Coord3d<int> Coord3dInt;

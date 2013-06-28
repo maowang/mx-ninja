@@ -22,6 +22,11 @@ public:
 	{
 		return _string.c_str();
 	}
+	
+	void resize(unsigned int sz)
+	{
+		_string.resize(sz);
+	}
 
 	unsigned int length() const
 	{

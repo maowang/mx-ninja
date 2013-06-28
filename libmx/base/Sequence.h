@@ -1,28 +1,17 @@
-#ifndef _COORDINATE_SEQUENCE_H_
-#define _COORDINATE_SEQUENCE_H_
+#ifndef _SEQUENCE_H_
+#define _SEQUENCE_H_
 
 #include "base/Base.h"
 
 BEG_MX_NAMESPACE
+
+template<class Type>
 class LIBMX_API Sequence
 {
 public:
-	Sequence(){}
+	Sequence(){};
+
 	virtual ~Sequence(){};
-	virtual unsigned int size() const = 0;
-};
-
-template<class Type>
-class LIBMX_API CoordinateSequence : public Sequence
-{
-public:
-	CoordinateSequence(){};
-
-	virtual ~CoordinateSequence(){};
-
-	virtual void setValue(unsigned int index,unsigned int dim,const Type& val) = 0;
-
-	virtual const Type& getValue(unsigned int index,unsigned int dim) const = 0;
 
 	const Type& getX(unsigned int index) const
 	{
@@ -53,6 +42,13 @@ public:
 	{
 		setValue(index,3,val);
 	}
+
+public:
+	virtual void setValue(unsigned int index,unsigned int dim,const Type& val) = 0;
+
+	virtual const Type& getValue(unsigned int index,unsigned int dim) const = 0;
+
+	virtual unsigned int size() const = 0;
 };
 
 END_MX_NAMESPACE

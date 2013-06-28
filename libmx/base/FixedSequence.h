@@ -1,15 +1,15 @@
-#ifndef _COORDINATE_FIXED_SEQUENCE_H_
-#define _COORDINATE_FIXED_SEQUENCE_H_
+#ifndef _FIXED_SEQUENCE_H_
+#define _FIXED_SEQUENCE_H_
 
-#include "geometry/CoordinateSequence.h"
+#include "base/Sequence.h"
 
 BEG_MX_NAMESPACE
 
 template<class Type,unsigned int _size,unsigned int _dimension>
-class LIBMX_API CoordinateFixedSequence : public CoordinateSequence<Type>
+class LIBMX_API FixedSequence : public Sequence<Type>
 {
 public:
-	CoordinateFixedSequence()
+	FixedSequence()
 	{
 	}
 
@@ -30,18 +30,18 @@ public:
 		return _values[index * _dimension + (dim - 1)];
 	}
 private:
-	const CoordinateFixedSequence& operator=(const CoordinateFixedSequence& other);
+	const FixedSequence& operator=(const FixedSequence& other);
 	Type _values[_size*_dimension];
 };
 
 template<unsigned int sz=1,unsigned int dim=1>
-class CoordFixedSequenceInt : public CoordinateFixedSequence<int,sz,dim>{};
+class FixedSequenceInt : public FixedSequence<int,sz,dim>{};
 
 template<unsigned int sz=1,unsigned int dim=1>
-class CoordFixedSequenceFloat : public CoordinateFixedSequence<float,sz,dim>{};
+class FixedSequenceFloat : public FixedSequence<float,sz,dim>{};
 
 template<unsigned int sz=1,unsigned int dim=1>
-class CoordFixedSequenceDouble : public CoordinateFixedSequence<double,sz,dim>{};
+class FixedSequenceDouble : public FixedSequence<double,sz,dim>{};
 
 END_MX_NAMESPACE
 

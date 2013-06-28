@@ -1,13 +1,13 @@
 #include "Test.h"
 #include "geometry/Coordinate.h"
-#include "geometry/CoordinateArraySequence.h"
-#include "geometry/CoordinateFixedSequence.h"
+#include "base/VarSequence.h"
+#include "base/FixedSequence.h"
 
 USING_MX_NAMESPACE
 
 TEST(CoordinateArraySequence_resize)
 {
-	CoordArraySequenceInt array(1,12);
+	VarSequenceInt array(1,12);
 	EXPECT_TRUE(array.size() == 12);
 
 	array.resize(25,123);
@@ -18,7 +18,7 @@ TEST(CoordinateArraySequence_resize)
 		EXPECT_TRUE(array.getValue(i,1) == 123);
 	}
 
-	CoordArraySequenceDouble iValue(2,3);
+	VarSequenceDouble iValue(2,3);
 	iValue.setValue(0,1,0);
 	iValue.setValue(0,2,1);
 	iValue.setValue(1,1,2);
@@ -35,7 +35,7 @@ TEST(CoordinateArraySequence_resize)
 
 TEST(CoordinateArraySequence_getset)
 {
-	CoordArraySequenceDouble dArray(3,2);
+	VarSequenceDouble dArray(3,2);
 	dArray.setX(0,1);
 	dArray.setY(0,2);
 	dArray.setZ(0,3);
@@ -56,7 +56,7 @@ TEST(CoordinateArraySequence_getset)
 
 TEST(CoordinateArraySequence_add)
 {
-	CoordArraySequenceFloat iArray;
+	VarSequenceFloat iArray;
 	iArray.add(5);
 	EXPECT_TRUE(iArray.getX(0) == 5);
 	iArray.add(2);
@@ -66,7 +66,7 @@ TEST(CoordinateArraySequence_add)
 
 	EXPECT_TRUE(iArray.size() == 3);
 
-	CoordArraySequenceFloat iArray2d(2);
+	VarSequenceFloat iArray2d(2);
 	iArray2d.add(1,3);
 	iArray2d.add(5,9);
 	EXPECT_TRUE(iArray2d.getX(0) == 1);
@@ -76,7 +76,7 @@ TEST(CoordinateArraySequence_add)
 
 	EXPECT_TRUE(iArray2d.size() == 2);
 
-	CoordArraySequenceFloat iArray3d(3,5);
+	VarSequenceFloat iArray3d(3,5);
 	iArray3d.add(6,0,2);
 	EXPECT_TRUE(iArray3d.size() == 6);
 	EXPECT_TRUE(iArray3d.getX(5) == 6);
@@ -86,14 +86,14 @@ TEST(CoordinateArraySequence_add)
 
 TEST(CoordinateFixedSequence_setget)
 {
-	CoordFixedSequenceFloat<10> farray;
+	FixedSequenceFloat<10> farray;
 	for(int i=0;i<10;i++)
 	{
 		farray.setX(i,5.0);
 		EXPECT_TRUE(farray.getX(i) == 5.0);
 	}
 
-	CoordFixedSequenceInt<3,2> iarray;
+	FixedSequenceInt<3,2> iarray;
 	EXPECT_TRUE(iarray.size() == 3);
 
 	iarray.setX(0,0);
@@ -110,7 +110,7 @@ TEST(CoordinateFixedSequence_setget)
 	}
 
 	const int sz = 100000;
-	CoordFixedSequenceInt<sz,2>* seq = new CoordFixedSequenceInt<sz,2>();
+	FixedSequenceInt<sz,2>* seq = new FixedSequenceInt<sz,2>();
 	EXPECT_TRUE(seq->size() == sz);
 	for(int i=0;i<sz;i++)
 	{

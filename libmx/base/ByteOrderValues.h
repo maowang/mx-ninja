@@ -1,5 +1,5 @@
-#ifndef _BYTE_ORDER_VALUES_H
-#define _BYTE_ORDER_VALUES_H
+#ifndef _BYTE_ORDER_VALUES_H_
+#define _BYTE_ORDER_VALUES_H_
 
 #include "base/Base.h"
 

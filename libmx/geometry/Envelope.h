@@ -3,7 +3,7 @@
 
 #include "base/Base.h"
 #include "geometry/Coordinate.h"
-#include "geometry/CoordinateFixedSequence.h"
+#include "base/FixedSequence.h"
 
 BEG_MX_NAMESPACE
 
@@ -160,7 +160,7 @@ public:
 			other.maxY() >= _coords.getY(0) && other.minY() <= _coords.getY(1);
 	}
 private:
-	CoordinateFixedSequence<Type,2,2> _coords;
+	FixedSequence<Type,2,2> _coords;
 };
 
 typedef Envelope<int> EnvelopeInt;

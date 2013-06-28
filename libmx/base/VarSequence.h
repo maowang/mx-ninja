@@ -1,20 +1,20 @@
-#ifndef _COORDINATE_ARRAY_SEQUENCE_H_
-#define _COORDINATE_ARRAY_SEQUENCE_H_
+#ifndef _VAR_SEQUENCE_H_
+#define _VAR_SEQUENCE_H_
 
-#include "geometry/CoordinateSequence.h"
+#include "base/Sequence.h"
 
 BEG_MX_NAMESPACE
 
 template<class Type>
-class LIBMX_API CoordinateArraySequence : public CoordinateSequence<Type>
+class LIBMX_API VarSequence : public Sequence<Type>
 {
 public:
-	CoordinateArraySequence()
+	VarSequence()
 	{
 		_dimension = 1;
 	}
 
-	CoordinateArraySequence(unsigned int dimen,unsigned int sz=0)
+	VarSequence(unsigned int dimen,unsigned int sz=0)
 	{
 		_dimension  = dimen;
 		_values.resize(sz*dimen);
@@ -71,9 +71,9 @@ private:
 	std::vector<Type> _values;
 };
 
-typedef CoordinateArraySequence<int> CoordArraySequenceInt;
-typedef CoordinateArraySequence<float> CoordArraySequenceFloat;
-typedef CoordinateArraySequence<double> CoordArraySequenceDouble;
+typedef VarSequence<int> VarSequenceInt;
+typedef VarSequence<float> VarSequenceFloat;
+typedef VarSequence<double> VarSequenceDouble;
 
 END_MX_NAMESPACE
 
