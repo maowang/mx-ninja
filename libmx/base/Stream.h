@@ -68,7 +68,12 @@ class LIBMX_API Stream{
 		virtual unsigned int writeBytes(void* buf,unsigned int size)=0;
 
 	protected:
-		virtual bool setPosition(unsigned int pos)=0;
+		virtual bool setPosition(unsigned int pos)
+		{
+			assert(pos < size());
+			_pos = pos;
+			return true;
+		}
 
 		unsigned int _pos;
 		unsigned char _buf[8];

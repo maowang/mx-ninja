@@ -5,6 +5,53 @@
 
 BEG_MX_NAMESPACE
 
+template<class Type,unsigned int _dimension>
+class LIBMX_API FixedSequenceAlloc : public Sequence<Type>
+{
+public:
+	FixedSequenceAlloc(unsigned int sz)
+	{
+		_values = new Type[_dimension * sz];
+		_size = 0;
+		if(_values != NULL)
+		{
+			_size = sz;
+		}
+	}
+
+	~FixedSequenceAlloc()
+	{
+		delete[] _values;
+	}
+
+	virtual unsigned int size() const
+	{
+		return _size; 
+	}
+
+	virtual void setValue(unsigned int index,unsigned int dim,const Type& val)
+	{
+		if(index >= size() || dim > _dimension)return;
+
+		_values[index * _dimension + (dim - 1)] = val;
+	}
+
+	virtual const Type& getValue(unsigned int index,unsigned int dim) const
+	{
+		assert(index < size() || dim <= _dimension);
+		return _values[index * _dimension + (dim - 1)];
+	}
+
+	const Type* data()
+	{
+		return _values;
+	}
+private:
+	const FixedSequenceAlloc& operator=(const FixedSequenceAlloc& other);
+	Type* _values;
+	unsigned int _size;
+};
+
 template<class Type,unsigned int _size,unsigned int _dimension>
 class LIBMX_API FixedSequence : public Sequence<Type>
 {
@@ -28,6 +75,11 @@ public:
 	{
 		assert(index < size() && dim <= _dimension);
 		return _values[index * _dimension + (dim - 1)];
+	}
+
+	const Type* data()
+	{
+		return _values;
 	}
 private:
 	const FixedSequence& operator=(const FixedSequence& other);

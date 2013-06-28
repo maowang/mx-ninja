@@ -30,19 +30,22 @@ done:
 		return result;
 	}
 
-	static void encode(Stream& out,int val)
+	static void encode(unsigned char* buf,Stream& out,int val)
 	{
 		val = ENCODE_ZIG_ZAG(val);
 
+		int idx = 0;
 		while (true) {
 			if ((val & ~0x7F) == 0) {
-				out.putChar(val);
-				return;
+				buf[idx++] = val;
+				break;
 			} else {
-				out.putChar((val & 0x7F) | 0x80);
+				buf[idx++] = (val & 0x7F) | 0x80;
 				val >>= 7;
 			}
 		}
+
+		out.writeBytes(buf,idx);
 	}
 };
 

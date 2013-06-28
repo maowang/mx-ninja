@@ -16,7 +16,7 @@ BEG_MX_NAMESPACE
 		} 
 		else if(where == SEEK_END)
 		{
-			return setPosition(size()+pos);
+			return setPosition(size()+pos-1);
 		}
 		return false;
 	}
@@ -29,13 +29,12 @@ BEG_MX_NAMESPACE
 	int Stream::getInt()
 	{
 		readBytes(_buf,sizeof(int));
-		ByteOrderValues::getInt(_buf,ByteOrderValues::ENDIAN_BIG);
-		return true;
+		return ByteOrderValues::getInt(_buf,ByteOrderValues::ENDIAN_BIG);
 	}
 
 	int Stream::getVarInt()
 	{
-		return 0;
+		return VarCoder::decode(*this);
 	}
 
 	bool Stream::getString(MXString& str)
@@ -69,7 +68,7 @@ BEG_MX_NAMESPACE
 	
 	bool Stream::putVarInt(int i)
 	{
-		VarCoder::encode(*this,i);
+		VarCoder::encode(_buf,*this,i);
 		return true;
 	}
 

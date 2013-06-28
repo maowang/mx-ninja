@@ -15,7 +15,9 @@ file(GLOB_RECURSE LIBMX_H_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/libs)
 add_definitions(-DCURL_STATICLIB)
 
-if(CYGWIN OR LINUX)
+if(MSVC)
+add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+else()
 add_definitions(--coverage)
 endif()
 

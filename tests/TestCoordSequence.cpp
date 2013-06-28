@@ -169,3 +169,32 @@ TEST(Coordinate_2d3d)
 	EXPECT_TRUE(coord3d.getY() == 3);
 	EXPECT_TRUE(coord3d.getZ() == 5);
 }
+
+TEST(FixedSequence_set_get)
+{
+	FixedSequenceAlloc<int,3> seq(3);
+
+	seq.setX(0,1);
+	seq.setY(0,2);
+	seq.setZ(0,3);
+
+	seq.setX(1,4);
+	seq.setY(1,5);
+	seq.setZ(1,6);
+
+	seq.setX(2,7);
+	seq.setY(2,8);
+	seq.setZ(2,9);
+
+	EXPECT_TRUE(seq.getX(0) == 1);
+	EXPECT_TRUE(seq.getY(0) == 2);
+	EXPECT_TRUE(seq.getZ(0) == 3);
+
+	EXPECT_TRUE(seq.getX(1) == 4);
+	EXPECT_TRUE(seq.getY(1) == 5);
+	EXPECT_TRUE(seq.getZ(1) == 6);
+
+	EXPECT_TRUE(seq.getX(2) == 7);
+	EXPECT_TRUE(seq.getY(2) == 8);
+	EXPECT_TRUE(seq.getZ(2) == 9);
+}

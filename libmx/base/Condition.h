@@ -10,10 +10,9 @@ public:
 	Condition();
 	~Condition();
 
-	bool wait();
+	void wait();
+
 	bool signal();
-	bool broadcast();
-	bool lock();
 
 private:
 	pthread_mutex_t mutex;

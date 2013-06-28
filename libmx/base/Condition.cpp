@@ -14,24 +14,18 @@ Condition::~Condition()
 	pthread_cond_destroy(&cond);
 }
 
-bool Condition::wait()
+void Condition::wait()
 {
-	return pthread_cond_wait(&cond,&mutex) == 0;
+	if(pthread_mutex_lock(&mutex) == 0)
+	{
+		pthread_cond_wait(&cond,&mutex);
+		pthread_mutex_unlock(&mutex);
+	}
 }
 
 bool Condition::signal()
 {
 	return pthread_cond_signal(&cond) == 0;
-}
-
-bool Condition::broadcast()
-{
-	return pthread_cond_broadcast(&cond) == 0;
-}
-
-bool Condition::lock()
-{
-	return pthread_mutex_lock(&mutex) == 0;
 }
 
 END_MX_NAMESPACE

@@ -37,4 +37,5 @@
 #define MX_FLOAT_EQUAL(x,y)  (((x)-(y) >= -MX_EP) && ((x)-(y) <= MX_EP))
 #define MX_DOUBLE_EQUAL(x,y) (((x)-(y) >= -MX_HEP) && ((x)-(y) <= MX_HEP))
 
+#define MX_MAXINT ((unsigned int)0xFFFFFFFF)
 #endif

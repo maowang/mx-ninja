@@ -66,6 +66,11 @@ public:
 		_values.push_back(val2);
 		_values.push_back(val3);
 	}
+
+	const Type* data()
+	{
+		return &(_values[0]);
+	}
 private:
 	unsigned int _dimension;
 	std::vector<Type> _values;

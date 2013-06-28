@@ -14,15 +14,7 @@ public:
 		return *(int*)&dval; 
 	} 
 
-	static int round(double dval) 
-	{
-		if(dval >= 0.0f)
-		{
-			return ((int)(dval + 0.5f));
-		}
-
-		return ((int)(dval - 0.5f));
-	}
+	static int round(double dval);
 };
 
 END_MX_NAMESPACE
